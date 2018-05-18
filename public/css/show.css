@@ -1,0 +1,100 @@
+* {
+	margin: 0;
+
+	padding: 0;
+
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	min-height: 100%;
+}
+
+html, body {
+	background-color: #eee;
+}
+
+.card {
+	margin: 10px 0;
+}
+
+.post__main {
+	padding: 15px;
+}
+
+.post__author {
+	font-weight: bold;
+	margin-right: 20px;
+	font-size: 20px;
+}
+
+.post__buttongroup {
+	width: 100%;
+	border-top: 2px solid #eee;
+}
+
+.post__button {
+	width: 100%;
+	height: 50px;
+	background-color: transparent;
+	outline: none;
+	border: none;
+}
+
+.post__button:hover {
+	cursor: pointer;
+	background-color: #eee;
+}
+
+.col-4 {
+	width: 33.33%;
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+.post__extras {
+	background-color: #eee;
+}
+
+.comment__container {
+
+}
+
+.comment__wrapper {
+	margin: 20px;
+	min-height: 50px;
+	display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border-radius: 100px;
+}
+
+.comment__text {
+	margin: 10px 30px;
+	color: #212121;
+}
+
+.comment__author {
+	font-weight: bold;
+	margin-right: 20px;
+}
+
+.comment__inputcontainer {
+  background-color: white;
+  border-radius: 200px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+	margin: 20px;
+}
+
+.comment__submit {
+	display: none;
+}

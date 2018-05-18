@@ -1,0 +1,31 @@
+<% include partials/header %>
+
+<link rel="stylesheet" type="text/css" href="css/home.css">
+
+<div class="container text-center h-100">
+	<div class="h-100 row align-items-center">
+		<div class="col">
+			<h1 class="my-5"><a href="/">Bookface</a></h1>
+
+			<p class="my-4">Login Below</p>
+
+			<form class="login__form mx-auto" action="/login" method="POST">
+				<div class="form-group">
+					<input class="form-control" type="text" name="username" placeholder="Username">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="password" name="password" placeholder="Password">
+				</div>
+				<button type="submit" class="btn btn-primary">Login</button>
+			</form>
+
+			<p class="my-5">Don't have an account? <a href="/register">Sign Up</a></p>
+		</div>
+	</div>
+	
+	
+
+</div>
+
+
+<% include partials/footer %>

@@ -1,0 +1,49 @@
+<% include partials/header %>
+
+<link rel="stylesheet" type="text/css" href="/css/feed.css">
+
+<div class="container">
+	<h1>Home</h1>
+
+	<div class="jumbotron">
+		<h3>Create post</h3>
+		<form class="login__form mx-auto text-right" action="/posts" method="POST">
+			<div class="form-group">
+				<input class="form-control" type="text" name="post" placeholder="What's going on?">
+			</div>
+			<button type="submit" class="btn btn-primary">Post</button>
+		</form>
+	</div>
+
+	<ul class="list-group">
+		<% posts.forEach(function(post) {%>
+			<div class="card">
+				<li class="list-group-item">
+					<div>
+						<h3><%= post.author %></h3>
+						<p>
+							<%= post.post %>
+						</p>
+					</div>
+					<div class="post__buttongroup btn-group" role="group" aria-label="Basic example">
+						<div class="col-4">
+							<button type="button" class="post__button">Like</button>
+						</div>
+						<div class="col-4">
+					  	<a href="/posts/<%= post._id %>">
+					  		<button type="button" class="post__button">Comment</button>
+					  	</a>
+						</div>
+						<div class="col-4">
+					  	<button type="button" class="post__button">Share</button>
+						</div>
+					</div>
+				</li>
+			</div>
+		<% }); %>
+	</ul>
+</div>
+
+
+
+<% include partials/footer %>
