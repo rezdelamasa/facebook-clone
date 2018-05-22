@@ -82,8 +82,15 @@ app.post("/login", passport.authenticate("local", {
 });
 
 
+// ======================
+// Logout routes
+// ======================
+app.get("/logout", function(req, res) {
+	req.logout();
+	res.redirect("/");
+});
 
-app.get("/posts", function(req, res) {
+app.get("/posts", isLoggedIn, function(req, res) {
 	Post.find({}, function(err, allPosts) {
 		if(err) {
 			console.log(err);
@@ -93,7 +100,7 @@ app.get("/posts", function(req, res) {
 	});
 });
 
-app.post("/posts", function(req, res) {
+app.post("/posts", isLoggedIn, function(req, res) {
 	var post = req.body.post;
 	var newPost = {post: post};
 	Post.create(newPost, function(err, newlyPosted) {
@@ -114,12 +121,12 @@ app.get("/posts/:id", function(req, res) {
 			console.log(err);
 		} else {
 			// render show template
-			res.render("show", {post: foundPost});
+			res.render("show", {post: foundPost, currentUser: req.user});
 		}
 	});
 });
 
-app.post("/posts/:id", function(req, res) {
+app.post("/posts/:id", isLoggedIn, function(req, res) {
 	Post.findById(req.params.id, function(err, post) {
 		if(err) {
 			console.log(err);
@@ -129,7 +136,7 @@ app.post("/posts/:id", function(req, res) {
 				if(err) {
 					console.log(err);
 				} else {
-					post.comments.push(comment);
+					post.comments.unshift(comment);
 					post.save();
 					res.redirect("back");
 				}
@@ -139,8 +146,16 @@ app.post("/posts/:id", function(req, res) {
 });
 
 app.get("/profile", function(req, res) {
-	res.render("profile");
+	res.render("profile", {currentUser: req.user});
 });
+
+// Middleware
+function isLoggedIn(req, res, next) {
+	if(req.isAuthenticated()) {
+		return next();
+	}
+	res.redirect("/login");
+};
 
 app.listen(3000, function() {
 	console.log("Facebook Clone server has started.");

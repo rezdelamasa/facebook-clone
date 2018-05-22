@@ -34,3 +34,45 @@ html, body {
 	padding: 0;
 	float: left;
 }
+
+.post__extras {
+	background-color: #eee;
+}
+
+.comment__container {
+
+}
+
+.comment__wrapper {
+	margin: 20px;
+	min-height: 50px;
+	display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border-radius: 100px;
+}
+
+.comment__text {
+	margin: 10px 30px;
+	color: #212121;
+}
+
+.comment__author {
+	font-weight: bold;
+	margin-right: 20px;
+}
+
+.comment__inputcontainer {
+  background-color: white;
+  border-radius: 200px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+	margin: 20px;
+}
+
+.comment__submit {
+	display: none;
+}

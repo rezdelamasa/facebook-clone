@@ -1,9 +1,82 @@
 <% include partials/header %>
+<% include partials/logged-in/navbar %>
 
-<h1>My Profile</h1>
+<link rel="stylesheet" type="text/css" href="css/profile.css">
 
-<h3>My name</h3>
-<p>Location</p>
-<p>Age</p>
+<div class="container">
+	<section class="jumbotron jumbotron-fluid">
+		<img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-1/p240x240/16265529_1454763451202950_8668346669893650839_n.jpg?_nc_cat=0&oh=b8cc07eb3c80c3cf579cab6cfbd75207&oe=5B8B0918" class="img-thumbnail">
+		<h3 class="profile-name"><%= currentUser.username %></h3>
+		<nav class="navbar navbar-expand-lg navbar-primary bg-light profile-navbar">
+		  <div class="collapse navbar-collapse mr-auto" id="navbarNav">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Timeline</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">About</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Friends</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Photos</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">More</a>
+		      </li>
+		    </ul>
+		  </div>
+		</nav>
+	</section>
+	<div class="row">
+		<div class="col-4">
+			<div class="card">
+			  <h5 class="card-header">About <%= currentUser.username %></h5>
+			  <div class="card-body">
+			    <h6 class="card-title">work</h6>
+			  	<ul>
+			  		<li>
+			  			<p class="card-text">
+					    	THIS IS WHERE I WORKED
+					    </p>
+			  		</li>
+			  		<li>
+			  			<p class="card-text">
+					    	I ALSO WORKED HERE
+					    </p>
+			  		</li>
+			  	</ul>
+			  </div>
+			</div>
+		</div>
+
+
+		<div class="col-8">
+			<div class="card card--create">
+			  <div class="card-header">
+			  	<nav class="navbar navbar-expand-lg navbar-primary bg-light">
+					  <div class="collapse navbar-collapse mr-auto" id="navbarNav">
+					    <ul class="navbar-nav mr-auto">
+					      <li class="nav-item">
+					        <a class="nav-link" href="#">Make Post</a>
+					      </li>
+					      <li class="nav-item">
+					        <a class="nav-link" href="#">Photo/Video</a>
+					      </li>
+					    </ul>
+					  </div>
+					</nav>
+			  </div>
+			  <div class="card-body">
+					<form>
+						<input type="text" name="post" placeholder="What's on your mind?">
+						<input type="submit" class="btn btn-primary" value="Post">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <% include partials/footer %>

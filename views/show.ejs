@@ -2,6 +2,12 @@
 
 <link rel="stylesheet" type="text/css" href="/css/show.css">
 
+<% if(!currentUser) {%>
+	<% include partials/logged-out/navbar %>
+<% } else { %>
+	<% include partials/logged-in/navbar %>
+<% } %>
+
 <div class="container">
 	<div class="card">
 			<div class="post__main">
