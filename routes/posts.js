@@ -1,7 +1,12 @@
+var express = require("express");
+var router  = express.Router();
+
+
 // ===============
 // Posts routes
 // ===============
-app.get("/posts", isLoggedIn, function(req, res) {
+
+router.get("/posts", isLoggedIn, function(req, res) {
 	Post.find({}, function(err, allPosts) {
 		if(err) {
 			console.log(err);
@@ -11,7 +16,7 @@ app.get("/posts", isLoggedIn, function(req, res) {
 	});
 });
 
-app.post("/posts", isLoggedIn, function(req, res) {
+router.post("/posts", isLoggedIn, function(req, res) {
 	var post = req.body.post;
 	var newPost = {post: post};
 	Post.create(newPost, function(err, newlyPosted) {
@@ -24,7 +29,7 @@ app.post("/posts", isLoggedIn, function(req, res) {
 });
 
 //Show route - shows one post in more detail 
-app.get("/posts/:id", function(req, res) {
+router.get("/posts/:id", function(req, res) {
 	// Find the campground with provided ID
 	Post.findById(req.params.id).populate("comments").exec(function(err, foundPost) {
 		if(err) {
@@ -37,7 +42,7 @@ app.get("/posts/:id", function(req, res) {
 	});
 });
 
-app.post("/posts/:id", isLoggedIn, function(req, res) {
+router.post("/posts/:id", isLoggedIn, function(req, res) {
 	Post.findById(req.params.id, function(err, post) {
 		if(err) {
 			console.log(err);
@@ -55,3 +60,5 @@ app.post("/posts/:id", isLoggedIn, function(req, res) {
 		}
 	});
 });
+
+module.exports = router;
