@@ -10,6 +10,10 @@ var express 							= require("express"),
 		LocalStrategy					= require("passport-local"),
 		passportLocalMongoose = require("passport-local-mongoose");
 
+
+var postsRoutes = require("./routes/posts"),
+		authRoutes  = require("./routes/auth");
+
 mongoose.connect("mongodb://localhost/facebook_clone");
 
 seedDB();
