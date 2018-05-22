@@ -38,6 +38,9 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use(authRoutes);
+app.use(postsRoutes);
+
 app.listen(3000, function() {
 	console.log("Facebook Clone server has started.");
 });

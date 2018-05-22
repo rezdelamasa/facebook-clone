@@ -1,5 +1,7 @@
-var express = require("express");
-var router  = express.Router();
+var express 	= require("express");
+var router  	= express.Router();
+var passport  = require("passport");
+var User 			= require("../models/user");
 
 // ===============
 // Auth routes
@@ -7,21 +9,21 @@ var router  = express.Router();
 
 
 // Index and misc routes
-app.get("/", function(req, res) {
+router.get("/", function(req, res) {
 	res.render("home");
 });
 
-app.get("/profile", function(req, res) {
+router.get("/profile", function(req, res) {
 	res.render("profile", {currentUser: req.user});
 });
 
 // Register routes
 
-app.get("/register", function(req, res) {
+router.get("/register", function(req, res) {
 	res.render("register");
 });
 
-app.post("/register", function(req, res) {
+router.post("/register", function(req, res) {
 	User.register(new User({username: req.body.username}), req.body.password, function(err, user) {
 		if(err) {
 			console.log(err);
@@ -37,11 +39,11 @@ app.post("/register", function(req, res) {
 
 // Login routes
 
-app.get("/login", function(req, res) {
+router.get("/login", function(req, res) {
 	res.render("login");
 });
 
-app.post("/login", passport.authenticate("local", {
+router.post("/login", passport.authenticate("local", {
 	successRedirect: "/posts",
 	failureRedirect: "/login",
 }), function(req, res) {
@@ -51,7 +53,7 @@ app.post("/login", passport.authenticate("local", {
 
 // Logout routes
 
-app.get("/logout", function(req, res) {
+router.get("/logout", function(req, res) {
 	req.logout();
 	res.redirect("/");
 });
