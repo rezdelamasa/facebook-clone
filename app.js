@@ -16,7 +16,7 @@ var postsRoutes = require("./routes/posts"),
 
 mongoose.connect("mongodb://localhost/facebook_clone");
 
-// seedDB(); //seed the database
+seedDB();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));

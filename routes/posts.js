@@ -1,7 +1,7 @@
 var express = require("express");
 var router  = express.Router();
 var Post    = require("../models/post");
-var Comment = require("../models/comment");
+var Comment    = require("../models/comment");
 
 // ===============
 // Posts routes
@@ -19,22 +19,14 @@ router.get("/posts", isLoggedIn, function(req, res) {
 
 router.post("/posts", isLoggedIn, function(req, res) {
 	var post = req.body.post;
-  var author = req.user.username;
-  var newPost = {post: post, author: author};
-  console.log(newPost);
-  // Create a new campground and save to DB
-  Post.create(newPost, function(err, newlyCreated){
-      if(err){
-          console.log(err);
-      } else {
-          //redirect back to posts page
-          newlyCreated.author.id = req.user._id;
-	        newlyCreated.author.username = req.user.username;
-	        //save comment
-	        newlyCreated.save();
-          res.redirect("/posts");
-      }
-  });
+	var newPost = {post: post};
+	Post.create(newPost, function(err, newlyPosted) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.redirect("/posts");
+		}
+	});
 });
 
 //Show route - shows one post in more detail 
@@ -61,11 +53,6 @@ router.post("/posts/:id", isLoggedIn, function(req, res) {
 				if(err) {
 					console.log(err);
 				} else {
-					// add username and id to comment
-					comment.author.id = req.user._id;
-					comment.author.username = req.user.username;
-					// save comment
-					comment.save();
 					post.comments.unshift(comment);
 					post.save();
 					res.redirect("back");

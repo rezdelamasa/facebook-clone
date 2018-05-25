@@ -12,7 +12,7 @@
 	<div class="card">
 			<div class="post__main">
 				<a href="#" class="post__author">
-					<%= post.author.username %>
+					<%= post.author %>
 				</a>
 				<p>
 					<%= post.post %>
@@ -36,7 +36,7 @@
 					<% post.comments.forEach(function(comment) { %>
 						<div class="comment__wrapper align-self-center">
 							<p class="comment__text">
-								<a href="#" class="comment__author"><%= comment.author.username %></a><%= comment.text %>
+								<a href="#" class="comment__author">AUTHOR PLACEHOLDER</a><%= comment.text %>
 							</p>
 						</div>
 					<% }) %>
